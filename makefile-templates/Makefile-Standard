@@ -1,0 +1,33 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile-Standard                                  :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: enennige <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/03/23 12:06:26 by enennige          #+#    #+#              #
+#    Updated: 2018/03/24 09:55:58 by enennige         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+CC = gcc
+NAME = template_name #add project name here
+CFLAGS = -Wall -Wextra -Werror
+SRCS = main.c #specify exact filenames here
+OBJS = $(patsubst %.c, %.o, $(SRCS))
+LIB_OPT = -L ./libft/ -lft
+LIB_HEADER = -I. -I ./libft/includes/
+
+all: $(NAME)
+
+$(NAME):
+	$(CC) $(CFLAGS) $(LIB_HEADER) -c $(SRCS) 
+	$(CC) $(CFLAGS) $(OBJS) $(LIB_OPT) -o $(NAME)
+
+clean:
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
